@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s0="http://web.org" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://web.org" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://web.org">
+      <s:element name="SCProcess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="In" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SCProcessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SCProcessResult">
+              <s:complexType mixed="true">
+                <s:choice minOccurs="0" maxOccurs="unbounded">
+                  <s:any processContents="lax" />
+                </s:choice>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="SCProcessSoapIn">
+    <part name="parameters" element="s0:SCProcess" />
+  </message>
+  <message name="SCProcessSoapOut">
+    <part name="parameters" element="s0:SCProcessResponse" />
+  </message>
+  <portType name="BorrowerServicesSoap">
+    <operation name="SCProcess">
+      <input message="s0:SCProcessSoapIn" />
+      <output message="s0:SCProcessSoapOut" />
+    </operation>
+  </portType>
+  <binding name="BorrowerServicesSoap" type="s0:BorrowerServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="SCProcess">
+      <soap:operation soapAction="http://web.org/wcreg.SmartCitizenMembership.SCProcess" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="BorrowerServices">
+    <port name="BorrowerServicesSoap" binding="s0:BorrowerServicesSoap">
+      <soap:address location="http://212.219.42.22/vs/wcreg.SmartCitizenMembership.cls" />
+    </port>
+  </service>
+</definitions>
