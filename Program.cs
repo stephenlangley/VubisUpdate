@@ -43,7 +43,7 @@ namespace VubisUpdate
         case "leamington spa": return "LEA"; break;
         case "moreton morrell": return "MOR"; break;
         case "trident": return "TRI"; break;
-        case "henley in arden": return "LEA"; break;
+        case "henley in arden": return "HIA"; break;
         case "rugby": return "RUG"; break;
         case "malvern": return "MAL"; break;
         case "evesham": return "EVE"; break;
